@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>tables</title>
+</head>
+<body>
+<!--<form action="{% url 'admin:index' %}">
+    <input id="submit" type="button" value="Admin" />
+</form>-->
+[<a href="{% url 'admin:index' %}">admin</a>]
+<table border=1>
+    <tr>
+        <td>UNIVERSITIES</td>
+    </tr>
+
+    <tr>
+        <td>ID</td>
+        <td>NAME</td>
+        <td>ADDRESS</td>
+        <td>FOUNDING DATE</td>
+    </tr>
+
+    {% for univ in universities %}
+    <tr>
+        <td>{{univ.UniversityId}}</td>
+        <td>{{univ.UniversityName}}</td>>
+        <td>{{univ.UniversityAddress}}</td>>
+        <td>{{univ.FormationDate}}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
