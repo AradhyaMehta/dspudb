@@ -10,3 +10,18 @@
 {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
 </head>
 {% load i18n %}
+
+<div>
+    <a href="{% url 'admin:index' %}">admin</a>
+</div>
+
+{% for entry in logentries %}
+    <tr>
+    	<td>---</td>
+    	<td>{{entry.actor}}</td>
+    	<td> </td>
+        <td>{{entry}}</td>
+        <td> </td>
+        <td>{{entry.timestamp}}</td>
+    </tr>
+{% endfor %}

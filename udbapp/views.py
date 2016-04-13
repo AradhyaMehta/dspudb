@@ -3,6 +3,8 @@ from django.shortcuts import render
 
 from .models import University
 
+from auditlog.models import LogEntry
+
 
 # Create your views here.
 
@@ -26,4 +28,8 @@ def app_delete(request):
     return HttpResponse("<h1>Delete</h1>")
 
 def app_auditlog(request):
-    return render(request, "auditlog.html", {})
+    entries = LogEntry.objects.all()
+    log_data = {
+        "logentries": entries
+    }
+    return render(request, "auditlog.html", log_data)

@@ -2,9 +2,11 @@ from __future__ import unicode_literals
 from fernet_fields import EncryptedIntegerField, EncryptedCharField, EncryptedDateField
 from django.db import models
 from auditlog.registry import auditlog
+from auditlog.models import AuditlogHistoryField
 
 # Create your models here.
 class University(models.Model):
+    history = AuditlogHistoryField(pk_indexable=False)
     UniversityId = models.IntegerField(primary_key=True)
     UniversityName = models.CharField(max_length=45)
     UniversityAddress = models.CharField(max_length=75)
@@ -19,6 +21,7 @@ class University(models.Model):
 auditlog.register(University)
 
 class Department(models.Model):
+    history = AuditlogHistoryField(pk_indexable=False)
     DepartmentId = models.IntegerField(primary_key=True)
     DepartmentName = models.CharField(max_length=45)
     DepartmentHead = models.CharField(max_length=45)
@@ -35,16 +38,12 @@ class Department(models.Model):
 auditlog.register(Department)
 
 class Student(models.Model):
-    #StudentId = EncryptedIntegerField(primary_key=True)
+    history = AuditlogHistoryField(pk_indexable=False)
     StudentId = models.IntegerField(primary_key=True)
     StudentName = EncryptedCharField(max_length=1000)
     StudentAddress = EncryptedCharField(max_length=1000)
     Gender = EncryptedCharField(max_length=1000)
     DateOfBirth = EncryptedDateField()
-    #StudentName = models.CharField(max_length=45)
-    #StudentAddress = models.CharField(max_length=45)
-    #Gender = models.CharField(max_length=45)
-    #DateOfBirth = models.DateField()
     DeptId = models.ForeignKey(Department)
     UniverseId = models.ForeignKey(University)
 
@@ -57,6 +56,7 @@ class Student(models.Model):
 auditlog.register(Student)
 
 class Employee(models.Model):
+    history = AuditlogHistoryField(pk_indexable=False)
     EmployeeName = EncryptedCharField(max_length=1000)
     EmployeeId = models.IntegerField(primary_key=True)
     EmployeeSSN = EncryptedIntegerField()
