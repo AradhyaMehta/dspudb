@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-
+from fernet_fields import EncryptedIntegerField, EncryptedCharField, EncryptedDateField
 from django.db import models
 
 # Create your models here.
@@ -30,11 +30,16 @@ class Department(models.Model):
         unique_together=(("DepartmentId", "DepartmentName"),)
 
 class Student(models.Model):
+    #StudentId = EncryptedIntegerField(primary_key=True)
     StudentId = models.IntegerField(primary_key=True)
-    StudentName = models.CharField(max_length=45)
-    StudentAddress = models.CharField(max_length=45)
-    Gender = models.CharField(max_length=45)
-    DateOfBirth = models.DateField()
+    StudentName = EncryptedCharField(max_length=1000)
+    StudentAddress = EncryptedCharField(max_length=1000)
+    Gender = EncryptedCharField(max_length=1000)
+    DateOfBirth = EncryptedDateField()
+    #StudentName = models.CharField(max_length=45)
+    #StudentAddress = models.CharField(max_length=45)
+    #Gender = models.CharField(max_length=45)
+    #DateOfBirth = models.DateField()
     DeptId = models.ForeignKey(Department)
     UniverseId = models.ForeignKey(University)
 
