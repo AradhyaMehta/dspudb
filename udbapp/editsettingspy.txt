@@ -1,0 +1,17 @@
+Instructions to edit the settings.py file:
+
+1. Edit INSTALLED_APPS by appending 'udbapp' and 'auditlog' as apps.
+2. Edit MIDDLEWARE_CLASSES by appending 'auditlog.middleware.AuditlogMiddleware' tp its end.
+3. Edit the 'DIRS' field of TEMPLATES by setting it to [os.path.join(BASE_DIR, 'templates')]
+4. Edit DATABASES to 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'application',
+        'USER': '<username>',
+        'PASSWORD': '<password>',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
+} 
+Set the <username> and <password> according to what it is in your MySql server.
