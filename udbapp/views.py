@@ -1,5 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
+from django.template import RequestContext
 
 from .models import University
 
@@ -33,3 +34,23 @@ def app_auditlog(request):
         "logentries": entries
     }
     return render(request, "auditlog.html", log_data)
+
+def custom400(request):
+    response = render_to_response('400.html', {}, context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
+
+def custom403(request):
+    response = render_to_response('403.html', {}, context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
+
+def custom404(request):
+    response = render_to_response('404.html', {}, context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
+
+def custom500(request):
+    response = render_to_response('500.html', {}, context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
