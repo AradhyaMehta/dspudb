@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from fernet_fields import EncryptedIntegerField, EncryptedCharField, EncryptedDateField
 from django.db import models
+from auditlog.registry import auditlog
 
 # Create your models here.
 class University(models.Model):
@@ -15,6 +16,8 @@ class University(models.Model):
     class Meta:
         db_table='university'
 
+auditlog.register(University)
+
 class Department(models.Model):
     DepartmentId = models.IntegerField(primary_key=True)
     DepartmentName = models.CharField(max_length=45)
@@ -28,6 +31,8 @@ class Department(models.Model):
     class Meta:
         db_table='department'
         unique_together=(("DepartmentId", "DepartmentName"),)
+
+auditlog.register(Department)
 
 class Student(models.Model):
     #StudentId = EncryptedIntegerField(primary_key=True)
@@ -49,6 +54,8 @@ class Student(models.Model):
     class Meta:
         db_table='student'
 
+auditlog.register(Student)
+
 class Employee(models.Model):
     EmployeeName = EncryptedCharField(max_length=1000)
     EmployeeId = models.IntegerField(primary_key=True)
@@ -63,3 +70,5 @@ class Employee(models.Model):
 
     class Meta:
         db_table='employee'
+
+auditlog.register(Employee)

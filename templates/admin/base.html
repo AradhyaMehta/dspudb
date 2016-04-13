@@ -23,11 +23,10 @@
         <div id="branding">
         {% block branding %}{% endblock %}
         </div>
-        <div id="homelink">
-            <a href="/">Home</a>
-        </div>
+        <a href="/">List of Universities</a>
         {% block usertools %}
         {% if has_permission %}
+        <a href="{% url 'udbapp.views.app_auditlog' %}">Audit Log</a>
         <div id="user-tools">
             {% block welcome-msg %}
                 {% trans 'Welcome,' %}

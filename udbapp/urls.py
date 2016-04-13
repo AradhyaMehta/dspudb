@@ -1,13 +1,14 @@
 from django.conf.urls import url
 from django.contrib import admin
 
-from .views import app_home, app_retrieve, app_create, app_update, app_delete
+from . import views
 
 urlpatterns = [
-    url(r'^$', app_home),
-    url(r'^create/$', app_create),
-    url(r'^retrieve$', app_retrieve),
-    url(r'^update/$', app_update),
-    url(r'^delete/$', app_delete),
+    url(r'^$', views.app_home),
+    url(r'^create/$', views.app_create),
+    url(r'^retrieve/$', views.app_retrieve),
+    url(r'^update/$', views.app_update),
+    url(r'^delete/$', views.app_delete),
+    url(r'^auditlog/$', views.app_auditlog),
     url(r'^admin/', admin.site.urls),
 ]

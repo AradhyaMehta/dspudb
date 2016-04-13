@@ -3,6 +3,7 @@ from django.shortcuts import render
 
 from .models import University
 
+
 # Create your views here.
 
 def app_home(request):
@@ -23,3 +24,6 @@ def app_update(request):
 
 def app_delete(request):
     return HttpResponse("<h1>Delete</h1>")
+
+def app_auditlog(request):
+    return render(request, "auditlog.html", {})
