@@ -50,11 +50,11 @@ class Student(models.Model):
         db_table='student'
 
 class Employee(models.Model):
-    EmployeeName = models.CharField(max_length=45)
+    EmployeeName = EncryptedCharField(max_length=1000)
     EmployeeId = models.IntegerField(primary_key=True)
-    EmployeeSSN = models.IntegerField()
-    EmployeePosition = models.CharField(max_length=45)
-    EmployeeSalary = models.IntegerField()
+    EmployeeSSN = EncryptedIntegerField()
+    EmployeePosition = EncryptedCharField(max_length=1000)
+    EmployeeSalary = EncryptedIntegerField
     DepartId = models.ForeignKey(Department)
     UniId = models.ForeignKey(University)
 
